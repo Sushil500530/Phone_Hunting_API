@@ -11,7 +11,7 @@ const loadPhone = async (searchText,isShowAll) => {
       const phoneContainer = document.getElementById('phone-container')
       // clear phone container card before adding new cards 
       phoneContainer.innerText = '' ;
-      console.log(Phones)
+    //   console.log(Phones)
 
     // display all show button if there are more then 12(jodi element onek gulo ace sekhettre button ta dekhabe, na hole dekhabe na)
     const showAllContainer = document.getElementById('show-all-container') ;
@@ -30,7 +30,7 @@ const loadPhone = async (searchText,isShowAll) => {
     }
 
       Phones.forEach((phone) => {
-      console.log(phone)
+    //   console.log(phone)
       // 1.createa div
       const phoneCard = document.createElement("div");
       phoneCard.classList = `card border shadow-xl`;
@@ -43,7 +43,7 @@ const loadPhone = async (searchText,isShowAll) => {
           <h2 class="card-title">${phone.phone_name}</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div class="card-actions">
-            <button onclick ="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
+            <button onclick ="handleShowDetails('${phone.slug}');show_details_modal.showModal()" class="btn btn-primary">Show Details</button>
           </div>
         </div>
           `;
@@ -58,11 +58,38 @@ const loadPhone = async (searchText,isShowAll) => {
   3.data load kora(single phone data)
   */
   const handleShowDetails = async(needId) =>{
-    console.log('clicked details',needId)
+    // console.log('clicked details',needId)
+    // load single phone data
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${needId}`) ;
     const data = await res.json() ;
-    console.log(data)
+    console.log(data) ;
+    const phone = data.data
+    showPhoneDetails(phone)
+
   }
+
+  const showPhoneDetails = (phone) =>{
+    console.log(phone)
+    const phoneName = document.getElementById('show-details-phone-name') ;
+    phoneName.innerText = phone.name ;
+    const showDetailsContainer =document.getElementById('show-details-container'); 
+    showDetailsContainer.innerHTML = `
+    <img src="${phone.image}" alt="phones">
+    <p><strong>Storage:</strong> <span>${phone?.mainFeatures?.storage}</span></p>
+    <p><strong>Display Size:</strong> :<span>${phone?.mainFeatures?.displaySize}</span></p>
+    <p><strong>Chipset:</strong> <span>${phone?.mainFeatures?.chipSet}</span></p>
+    <p><strong>Memory:</strong> <span>${phone?.mainFeatures?.memory}</span></p>
+    <p><strong>Slug:</strong> <span>${phone?.slug}</span></p>
+    <p><strong>Release Date:</strong> <span>${phone?.releaseDate}</span></p>
+    <p><strong>Brand:</strong> <span>${phone?.brand}</span></p>
+    <p><strong>Sensors:</strong> <span>${phone?.mainFeatures?.sensors}</span></p>
+    <p><strong>GPS:</strong> <span>${phone?.others?.GPS}</span></p>
+    `
+
+    // show the modal 
+    show_details_modal.showModal(phone)
+  }
+
   //handle search button
   const handleSearch = (isShowAll) =>{
     // ai function ta agei dite hobe, pore dile to value gulo dekhay dibe

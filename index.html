@@ -18,7 +18,7 @@
     <main class="mt-12">
       <section class="bg-slate-50 p-5">
         <input
-          type="text"
+          type="text" value="13"
           placeholder="Search..."
           id="search-field"
           class="input input-bordered input-info w-full max-w-xs"
@@ -52,11 +52,13 @@
       <!-- show details modal  -->
       <div>
         <!-- Open the modal using ID.showModal() method -->
-        <button class="btn" onclick="show_details_modal.showModal()">open modal</button>
+        <!-- <button class="btn" onclick="">open modal</button> -->
         <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
           <form method="dialog" class="modal-box">
-            <h3 class="font-bold text-lg">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
+            <h3 id="show-details-phone-name" class="font-bold text-3xl"></h3>
+            <div id="show-details-container">
+               
+            </div>
             <div class="modal-action">
               <!-- if there is a button in form, it will close the modal -->
               <button class="btn">Close</button>
