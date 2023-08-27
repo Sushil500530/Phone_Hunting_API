@@ -11,7 +11,19 @@ const loadPhone = async (searchText) => {
       const phoneContainer = document.getElementById('phone-container')
       // clear phone container card before adding new cards 
       phoneContainer.innerText = '' ;
-      console.log(Phones)
+    //   console.log(Phones)
+
+    // display all show button if there are more then 12(jodi element onek gulo ace sekhettre button ta dekhabe, na hole dekhabe na)
+    const showAllContainer = document.getElementById('show-all-container') ;
+    if(Phones.length > 12){
+        showAllContainer.classList.remove('hidden')
+    }
+    else{
+        showAllContainer.classList.add('hidden')
+    }
+
+    // search dile sob gulo phone dekhabe..tai joto gulo dekhate chai seta korar jonno slice() use kora hoy 
+    Phones = Phones.slice(0,12)
       Phones.forEach((phone) => {
       console.log(phone)
       // 1.createa div
