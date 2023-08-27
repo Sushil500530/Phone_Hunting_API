@@ -30,7 +30,7 @@ const loadPhone = async (searchText,isShowAll) => {
     }
 
       Phones.forEach((phone) => {
-    //   console.log(phone)
+      console.log(phone)
       // 1.createa div
       const phoneCard = document.createElement("div");
       phoneCard.classList = `card border shadow-xl`;
@@ -43,7 +43,7 @@ const loadPhone = async (searchText,isShowAll) => {
           <h2 class="card-title">${phone.phone_name}</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div class="card-actions">
-            <button class="btn btn-primary">Buy Now</button>
+            <button onclick ="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
           </div>
         </div>
           `;
@@ -53,7 +53,16 @@ const loadPhone = async (searchText,isShowAll) => {
     // hide loading spinner
     toggleLoadingSpinner(false)
   };
-  
+  /*1. show details ta k dhore kaj korar jnno(click korar jonno)
+  2. kare click kora hoice seta bujhte hobe 
+  3.data load kora(single phone data)
+  */
+  const handleShowDetails = async(needId) =>{
+    console.log('clicked details',needId)
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${needId}`) ;
+    const data = await res.json() ;
+    console.log(data)
+  }
   //handle search button
   const handleSearch = (isShowAll) =>{
     // ai function ta agei dite hobe, pore dile to value gulo dekhay dibe

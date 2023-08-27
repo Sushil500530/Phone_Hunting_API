@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hunting Phone API</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h2 class="text-3xl">Hunting Phone Resourse</h2>
+      <h2 class="text-3xl">Hunting Phone Resourse</h2>
     </header>
     <main class="mt-12">
-        <section class="bg-slate-50 p-5">
-            <input type="text" placeholder="Search..." id="search-field" class="input input-bordered input-info w-full max-w-xs" />
-            <button onclick="handleSearch()" class="btn btn-outline btn-success">Search</button>
-        </section>
+      <section class="bg-slate-50 p-5">
+        <input
+          type="text"
+          placeholder="Search..."
+          id="search-field"
+          class="input input-bordered input-info w-full max-w-xs"
+        />
+        <button onclick="handleSearch()" class="btn btn-outline btn-success">
+          Search
+        </button>
+      </section>
 
-        
-        <!-- search result -->
-        <section>
-            <!-- spinner or loader-->
-            <div id="loading-spinner" class="text-center my-40 hidden">
-                <span class="loading loading-dots text-primary loading-lg"></span>
+      <!-- search result -->
+      <section>
+        <!-- spinner or loader-->
+        <div id="loading-spinner" class="text-center my-40 hidden">
+          <span class="loading loading-dots text-primary loading-lg"></span>
+        </div>
+        <div
+          id="phone-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 m-4"
+        ></div>
+        <!-- show all button  -->
+        <div id="show-all-container" class="hidden text-center">
+          <button
+            onclick="handleShowAll()"
+            class="btn btn-success btn-xs bg-transparent sm:btn-sm md:btn-md lg:btn-lg"
+          >
+            Show All
+          </button>
+        </div>
+      </section>
+
+      <!-- show details modal  -->
+      <div>
+        <!-- Open the modal using ID.showModal() method -->
+        <button class="btn" onclick="show_details_modal.showModal()">open modal</button>
+        <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+          <form method="dialog" class="modal-box">
+            <h3 class="font-bold text-lg">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
             </div>
-            <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 m-4">
-              
-            </div>
-            <!-- show all button  -->
-            <div id="show-all-container" class="hidden text-center">
-                <button onclick="handleShowAll()" class="btn btn-success btn-xs bg-transparent sm:btn-sm md:btn-md lg:btn-lg">Show All</button>
-            </div>
-        </section>
+          </form>
+        </dialog>
+      </div>
     </main>
 
     <script src="./js/phone.js"></script>
-</body>
+  </body>
 </html>
