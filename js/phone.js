@@ -11,7 +11,17 @@ const loadPhone = async (searchText,isShowAll) => {
       const phoneContainer = document.getElementById('phone-container')
       // clear phone container card before adding new cards 
       phoneContainer.innerText = '' ;
-    //   console.log(Phones)
+      //   console.log(Phones)
+     // HW---
+      const ifNotFound = document.getElementById('if-not-found')
+      if(Phones.length === 0 && !isShowAll){
+        ifNotFound.innerText = 'No Data Available, Please Search Again...!'
+        // console.log("No Data Available!")
+      }
+      else{
+        ifNotFound.innerText = '' ;
+      }
+
 
     // display all show button if there are more then 12(jodi element onek gulo ace sekhettre button ta dekhabe, na hole dekhabe na)
     const showAllContainer = document.getElementById('show-all-container') ;
@@ -21,10 +31,12 @@ const loadPhone = async (searchText,isShowAll) => {
     else{
         showAllContainer.classList.add('hidden')
     }
+
     console.log('is show all', isShowAll)
     // search dile sob gulo phone dekhabe..tai joto gulo dekhate chai seta korar jonno slice() use kora hoy 
     // Phones = Phones.slice(0,12)
     // jodi slice() ta na hoy tahle show all korbo na..r jodi show all hoy tahle slice() korbo..tar mane akta condition dite hobe seta korar jonno 
+
     if(!isShowAll){
         Phones = Phones.slice(0,12)
     }
@@ -83,8 +95,9 @@ const loadPhone = async (searchText,isShowAll) => {
     <p><strong>Release Date:</strong> <span>${phone?.releaseDate}</span></p>
     <p><strong>Brand:</strong> <span>${phone?.brand}</span></p>
     <p><strong>Sensors:</strong> <span>${phone?.mainFeatures?.sensors}</span></p>
-    <p><strong>GPS:</strong> <span>${phone?.others?.GPS}</span></p>
+    <p><strong>GPS:</strong> <span>${phone?.others?.GPS || 'No GPS Available'}</span></p>
     `
+    // <p><strong>GPS:</strong> <span>${phone?.others?.GPS ? phone.others.GPS : 'No GPS Available'}</span></p>
 
     // show the modal 
     show_details_modal.showModal(phone)
@@ -100,7 +113,7 @@ const loadPhone = async (searchText,isShowAll) => {
       // console.log(searchText)
       loadPhone(searchText,isShowAll);
   }
-  
+
 //   loanding spinner 
 const toggleLoadingSpinner = (isLoading) => {
     const loandingSpinner = document.getElementById('loading-spinner') ;

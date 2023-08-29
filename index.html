@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hunting Phone API</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -17,47 +13,43 @@
     </header>
     <main class="mt-12">
       <section class="bg-slate-50 p-5">
-        <input
-          type="text" value="13"
-          placeholder="Search..."
-          id="search-field"
-          class="input input-bordered input-info w-full max-w-xs"
-        />
-        <button onclick="handleSearch()" class="btn btn-outline btn-success">
-          Search
-        </button>
+        <input type="text" placeholder="Search..." id="search-field" class="input input-bordered input-info w-full max-w-xs"/>
+        <button onclick="handleSearch()" class="btn btn-outline btn-success"> Search </button>
       </section>
 
       <!-- search result -->
       <section>
+        <!-- no data Available===> HW  -->
+        <div class="flex items-center justify-center">
+          <div id="if-not-found" class="text-2xl font-semibold mt-5 ">
+            <h3 ></h3>
+          </div>
+        </div>
         <!-- spinner or loader-->
         <div id="loading-spinner" class="text-center my-40 hidden">
           <span class="loading loading-dots text-primary loading-lg"></span>
         </div>
-        <div
-          id="phone-container"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 m-4"
-        ></div>
+        <!-- phone show container  -->
+        <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 m-4">
+        
+        </div>
         <!-- show all button  -->
         <div id="show-all-container" class="hidden text-center">
-          <button
-            onclick="handleShowAll()"
-            class="btn btn-success btn-xs bg-transparent sm:btn-sm md:btn-md lg:btn-lg"
-          >
+          <button onclick="handleShowAll()" class="btn btn-success btn-xs bg-transparent sm:btn-sm md:btn-md lg:btn-lg">
             Show All
           </button>
         </div>
       </section>
-
+      
       <!-- show details modal  -->
       <div>
         <!-- Open the modal using ID.showModal() method -->
         <!-- <button class="btn" onclick="">open modal</button> -->
-        <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+        <dialog id="show_details_modal" class="modal modal-middle sm:modal-middle">
           <form method="dialog" class="modal-box">
             <h3 id="show-details-phone-name" class="font-bold text-3xl"></h3>
             <div id="show-details-container">
-               
+  
             </div>
             <div class="modal-action">
               <!-- if there is a button in form, it will close the modal -->
@@ -66,6 +58,7 @@
           </form>
         </dialog>
       </div>
+
     </main>
 
     <script src="./js/phone.js"></script>
